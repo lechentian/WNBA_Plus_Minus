@@ -1,13 +1,9 @@
 import pandas as pd
 def get_court_time(enter, left):
-    #print(enter)
-    #print(left)
     in_time_array = enter.split(":")
     in_time_array = [float(i) for i in in_time_array]
     out_time_array = left.split(":")
     out_time_array = [float(i) for i in out_time_array]
-    #print(in_time_array)
-    #print(out_time_array)
     on_court_time = in_time_array[1]+60-out_time_array[1]
     on_court_time = on_court_time+(in_time_array[0]-out_time_array[0]-1)*60
     return on_court_time
@@ -42,7 +38,6 @@ def cal_data_for_each_period(full_df, player_df, player_id, period_id, game_id):
         else:
             return 0,0
     else:
-        #print('----------------------------'+str(rows))
         #print(filtered_df)
         need_skip_next = False
         #current_period_total = 0
@@ -72,7 +67,6 @@ def cal_data_for_each_period(full_df, player_df, player_id, period_id, game_id):
                     else:
                         self_team_score_total = self_team_score_total + current_period_score(full_df, game_id, period_id)[1] - filtered_df.iloc[i]['away_score']
                         opposing_team_score_total = opposing_team_score_total + current_period_score(full_df, game_id, period_id)[0] - filtered_df.iloc[i]['home_score']
-
             else: # off court
                 # print("off court")
                 # print(filtered_df.iloc[i]['clock_display_value'])
@@ -91,10 +85,6 @@ def cal_data_for_each_period(full_df, player_df, player_id, period_id, game_id):
 def each_game_data(full_df, game_id, player_df, player_id):
     each_game_on_court_time = 0
     game_plus_minus = 0
-    #print(cal_data_for_each_period(full_df, player_df, player_id, 1, game_id)[1])
-    #total_on_court_time = total_on_court_time + cal_data_for_each_period(full_df, player_df, player_id, 2, game_id)[0]
-    #total_on_court_time = total_on_court_time + cal_data_for_each_period(full_df, player_df, player_id, 3, game_id)[0]
-    #total_on_court_time = total_on_court_time + cal_data_for_each_period(full_df, player_df, player_id, 4, game_id)[0]
     for i in range(1,5,1):
         x = cal_data_for_each_period(full_df, player_df, player_id, i, game_id)
         each_game_on_court_time = each_game_on_court_time + x[0]
@@ -110,12 +100,8 @@ def all_players_data():
     with open("plusminusdataset.csv", "w") as f:
         f.write("PlayerID, PlayerName, TotalOnCourtTime, TotalPlusMinus, AveragePlusMinus \n")
         for line in Lines:
-            #print(line.strip())
             user_id_with_name = line.split(",")
-            #print(user_id_with_name[1].strip())
             player_id = int(user_id_with_name[0].strip())
-            #print(player_id)
-            #player_id = 4433630
             filtered_df = df[(df["athlete_id_1"] == player_id) | (df["athlete_id_2"] == player_id)]
             game_data = filtered_df.groupby("game_id")
             game_data_lists = list(game_data)
@@ -142,8 +128,6 @@ def player_name_list():
     pd.set_option('display.max_columns', None)
     user_groups = df.groupby("athlete_id")
     all_user_lists = list(user_groups)
-    #print(all_user_lists[0])
-    #print(all_user_lists[1])
     with open('PlayersNames.csv', 'w') as f:
         for i in range(len(all_user_lists)):
             #print(all_user_lists[i][0])
