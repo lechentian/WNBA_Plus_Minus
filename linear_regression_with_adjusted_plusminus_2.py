@@ -57,7 +57,7 @@ print(len(cc))
 
 print(len(all_user_ids))
 
-with open('graph2.csv', 'w') as f:
+with open('graph.csv', 'w') as f:
     f.writelines("UserId,UserName,Plus_min,Adjust_plus_min" +"\n")
     for i in range(len(all_user_ids)):
         f.writelines(str(all_user_ids[i])+","+all_user_name[i].strip()+","+str(cc[i])+","+str(List_result[i])+"\n")
