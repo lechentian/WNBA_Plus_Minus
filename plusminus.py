@@ -118,7 +118,7 @@ def all_players_data():
             if total_on_court_time != 0:
                 average_plus_minus = format(total_plus_minus/(total_on_court_time/2400), '.2f')
             else:
-                average_plus_minus = "/"
+                average_plus_minus = "-1"
             line = str(player_id) + "," + str(user_id_with_name[1]).strip() + "," + str(total_on_court_time) + "," + str(total_plus_minus) + "," + str(average_plus_minus)
             #print(line)
             f.write(line + "\n")
