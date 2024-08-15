@@ -76,7 +76,7 @@ def substitution_record(game_df, game_id):
             #print("----------------------")
             #print(home_team_active)
 
-            stint_number = stint_number + str(score_differential)+"," +str(stint_time/60)
+            stint_number = stint_number + str(score_differential)+"," +str(40*stint_time/60)
             #print(stint_number)
             #f.writelines(stint_number + "\n")
             stint_list.append(stint_number + "\n")
@@ -103,7 +103,7 @@ def substitution_record(game_df, game_id):
 
     score_differential = filtered_df.iloc[i]["home_score"] - filtered_df.iloc[i]["away_score"]
     stint_time = get_court_time(filtered_df.iloc[rows - 1]['clock_display_value'],"0:00")
-    end_of_game_stint = end_of_game_stint + str(score_differential)+"," +str(stint_time/60)
+    end_of_game_stint = end_of_game_stint + str(score_differential)+"," +str(40*stint_time/60)
     #print(score_differential)
     #print(stint_time)
     #print(end_of_game_stint)

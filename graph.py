@@ -7,7 +7,7 @@ data = pd.read_csv("graph2.csv")
 
 x = data['UserName'].values
 y1 = data['Plus_min'].values
-y2 = data['Adjust_plus_min'].values
+y2 = data['Weighted_adjust_plus_min'].values
 
 y1 =[float(i) for i in y1]
 y2 =[float(i) for i in y2]

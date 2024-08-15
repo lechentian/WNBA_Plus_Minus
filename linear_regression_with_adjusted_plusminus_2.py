@@ -32,9 +32,9 @@ print(y_wight_sting_time)
 print(type(y_wight_sting_time))
 y_list = np.ndarray.tolist(y_wight_sting_time)
 # print(y_list)
-# for i in y_list:
-#     if i <0:
-#         print(i)
+#for i in y_list:
+#    if i <0:
+#        print(i)
 
 
 model = LinearRegression()
@@ -53,11 +53,14 @@ all_user_ids.append(5209660)
 data = pd.read_csv("plusminusdataset.csv")
 cc = data['AveragePlusMinus '].values
 print(len(cc))
-
-
 print(len(all_user_ids))
 
+#print('--------')
+unweight_df = pd.read_csv("coefficient_of_each_player_unweighted.csv")
+unweight_list = unweight_df.iloc[0].values
+print(len(unweight_list))
+
 with open('graph.csv', 'w') as f:
-    f.writelines("UserId,UserName,Plus_min,Adjust_plus_min" +"\n")
+    f.writelines("UserId,UserName,Plus_min,UnWeight_adjust_plus_min,Weighted_adjust_plus_min" +"\n")
     for i in range(len(all_user_ids)):
-        f.writelines(str(all_user_ids[i])+","+all_user_name[i].strip()+","+str(cc[i])+","+str(List_result[i])+"\n")
+        f.writelines(str(all_user_ids[i])+","+all_user_name[i].strip()+","+str(cc[i])+","+str(unweight_list[i])+","+str(List_result[i])+"\n")
