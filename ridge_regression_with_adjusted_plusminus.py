@@ -15,7 +15,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error,r2_score,mean_absolute_error
 
 # importing data
-df = pd.read_csv("adjusted_plus_minus_2.csv")
+df = pd.read_csv("adjusted_plus_minus_new_scoredifferential.csv")
 
 allPlayers = open('PlayersNames.csv', 'r')
 Lines = allPlayers.readlines()
@@ -75,7 +75,7 @@ print(type(ridge_coefficient))
 print(len(ridge_coefficient))
 
 graph_df = pd.read_csv('graph.csv')
-graph_df["Ridge_Plus_Min"] = ridge_coefficient
+graph_df["Ridge_Plus_Min_2"] = ridge_coefficient
 graph_df.to_csv("graph.csv", index=False)
 
 # 65.1635877073379  0.1
