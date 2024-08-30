@@ -64,7 +64,7 @@ print(y_test.head())
 # y_pred = model.predict(X_test)
 
 
-model = linear_model.Ridge(alpha=28000)
+model = linear_model.Ridge(alpha=36500)
 # #model.fit(X_train, y_train["ScoreDifferential"], sample_weight=y_train["StintTime"])
 model.fit(X_train, y_train["ScoreDifferential"] / (y_train["StintTime"] / 60), sample_weight=y_train["StintTime"])
 y_pred = model.predict(X_test)
@@ -91,11 +91,16 @@ graph_df.to_csv("graph.csv", index=False)
 # 15000 8.52
 # 20000 8.514
 # 22500 8.513
-# 25000 8.5125
-# 27000 8.5124
-# 28000 8.5125
-# 30000 8.5128
-# 35000 8.514
+# 25000 8.54556
+# 27000 8.54464
+# 28000 8.54426
+# 30000 8.54368
+# 34000 8.54311
+# 35000 8.54305
+# 36000 8.543035
+# 36500 8.543034
+# 37000 8.543039
+# 38000 8.54306
 
 
 
