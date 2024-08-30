@@ -57,13 +57,16 @@ print('y_test : ')
 print(y_test.head())
 
 
+
+
 # model = LinearRegression(fit_intercept=True)
 # model.fit(X_train, y_train)
 # y_pred = model.predict(X_test)
 
 
-model = linear_model.Ridge(alpha=500)
-model.fit(X_train, y_train["ScoreDifferential"], sample_weight=y_train["StintTime"])
+model = linear_model.Ridge(alpha=28000)
+# #model.fit(X_train, y_train["ScoreDifferential"], sample_weight=y_train["StintTime"])
+model.fit(X_train, y_train["ScoreDifferential"] / (y_train["StintTime"] / 60), sample_weight=y_train["StintTime"])
 y_pred = model.predict(X_test)
 
 
@@ -75,24 +78,28 @@ print(type(ridge_coefficient))
 print(len(ridge_coefficient))
 
 graph_df = pd.read_csv('graph.csv')
-graph_df["Ridge_Plus_Min_2"] = ridge_coefficient
+graph_df["Ridge_Plus_Min_3"] = ridge_coefficient
 graph_df.to_csv("graph.csv", index=False)
 
-# 65.1635877073379  0.1
-# 65.12778089470923 1
-# 64.90359354122225 10
-# 64.43538743730221 100
-# 64.17153253561004 300
-# 64.14448314828768 500
-# 64.15379620786273 550
-# 64.20400281529821 700
-# 64.25068895148738 800
-# 64.30467889486495 900
-# 64.36415742154612 1000
-# 64.49472531300033 1200
-# 64.70828783494683 1500
-# 65.0842149098752  2000
-# 69.70668105961717 10000
+# 100 9.0
+# 500 8.9
+# 1000 8.8
+# 2000 8.7
+# 3000 8.6
+# 5000 8.59
+# 10000 8.53
+# 15000 8.52
+# 20000 8.514
+# 22500 8.513
+# 25000 8.5125
+# 27000 8.5124
+# 28000 8.5125
+# 30000 8.5128
+# 35000 8.514
+
+
+
+
 
 
 
