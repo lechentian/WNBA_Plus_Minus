@@ -15,7 +15,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error,r2_score,mean_absolute_error
 
 # importing data
-df = pd.read_csv("adjusted_plus_minus_new_scoredifferential.csv")
+df = pd.read_csv("adjusted_plus_minus_3.csv")
 
 allPlayers = open('PlayersNames.csv', 'r')
 Lines = allPlayers.readlines()
@@ -64,7 +64,7 @@ print(y_test.head())
 # y_pred = model.predict(X_test)
 
 
-model = linear_model.Ridge(alpha=36500)
+model = linear_model.Ridge(alpha=50000)
 # #model.fit(X_train, y_train["ScoreDifferential"], sample_weight=y_train["StintTime"])
 model.fit(X_train, y_train["ScoreDifferential"] / (y_train["StintTime"] / 60), sample_weight=y_train["StintTime"])
 y_pred = model.predict(X_test)
@@ -77,30 +77,28 @@ ridge_coefficient.append(-1.23162381)
 print(type(ridge_coefficient))
 print(len(ridge_coefficient))
 
-graph_df = pd.read_csv('graph.csv')
-graph_df["Ridge_Plus_Min_3"] = ridge_coefficient
-graph_df.to_csv("graph.csv", index=False)
+graph_df = pd.read_csv('All_Coefficients.csv')
+graph_df["Ridge_Plus_Min"] = ridge_coefficient
+graph_df.to_csv("All_Coefficients.csv", index=False)
 
-# 100 9.0
-# 500 8.9
-# 1000 8.8
-# 2000 8.7
-# 3000 8.6
-# 5000 8.59
-# 10000 8.53
-# 15000 8.52
-# 20000 8.514
-# 22500 8.513
-# 25000 8.54556
-# 27000 8.54464
-# 28000 8.54426
-# 30000 8.54368
-# 34000 8.54311
-# 35000 8.54305
-# 36000 8.543035
-# 36500 8.543034
-# 37000 8.543039
-# 38000 8.54306
+# 1   9.34
+# 10  9.33
+# 100 9.32
+# 1000 9.22
+# 10000 9.02
+# 30000 8.97852
+# 40000 8.9754
+# 50000 8.97503
+# 55000 8.97533
+# 60000 8.97584
+# 70000 8.977
+# 80000 8.978
+# 90000 8.980
+# 100000 8.982
+# 110000 8.984
+# 150000 8.99
+# 1000000 9.03
+# 10000000 9.05
 
 
 

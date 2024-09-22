@@ -97,7 +97,7 @@ def all_players_data():
     pd.set_option("display.max_columns", None)
     allPlayers = open('PlayersNames.csv', 'r')
     Lines = allPlayers.readlines()
-    with open("plusminusdataset.csv", "w") as f:
+    with open("All_Coefficients.csv", "w") as f:
         f.write("PlayerID, PlayerName, TotalOnCourtTime, TotalPlusMinus, AveragePlusMinus \n")
         for line in Lines:
             user_id_with_name = line.split(",")
@@ -136,6 +136,6 @@ def player_name_list():
             f.writelines(str(all_user_lists[i][0]) + "," + text_with_player_name + "\n")
 
 if __name__=="__main__":
-    player_name_list()
+    #player_name_list()
     all_players_data()
 
