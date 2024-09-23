@@ -85,7 +85,7 @@ def cal_data_for_each_period(full_df, player_df, player_id, period_id, game_id):
 def each_game_data(full_df, game_id, player_df, player_id):
     each_game_on_court_time = 0
     game_plus_minus = 0
-    for i in range(1,5,1):
+    for i in range(1,7,1):
         x = cal_data_for_each_period(full_df, player_df, player_id, i, game_id)
         each_game_on_court_time = each_game_on_court_time + x[0]
         game_plus_minus = game_plus_minus + x[1]
