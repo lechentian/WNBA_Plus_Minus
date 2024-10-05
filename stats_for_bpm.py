@@ -21,7 +21,7 @@ def different_stats(filtered_df):
     average_assists = format(total_assists / (total_minutes / 40), '.2f')
     average_steals = format(total_steals / (total_minutes / 40), '.2f')
     average_points = format(total_points / (total_minutes / 40), '.2f')
-    return average_rebounds, average_assists, average_steals, average_points
+    return average_rebounds, average_assists, average_steals, average_points, total_minutes
 
 def all_players_data():
     df = pd.read_csv("player_box_2024_removed_USA.csv")
@@ -29,14 +29,14 @@ def all_players_data():
     allPlayers = open('PlayersNames.csv', 'r')
     Lines = allPlayers.readlines()
     with open("all_player_bpm_stats.csv", "w") as f:
-        f.write("PlayerID, PlayerName, AverageRebounds, AverageAssists, AverageSteals, AveragePoints \n")
+        f.write("PlayerID, PlayerName, AverageRebounds, AverageAssists, AverageSteals, AveragePoints, TotalMinutes \n")
         for line in Lines:
             user_id_with_name = line.split(",")
             player_id = int(user_id_with_name[0].strip())
             filtered_df = df[(df["athlete_id"] == player_id)]
             x = different_stats(filtered_df)
             #print(x[1])
-            line = str(player_id) + "," + str(user_id_with_name[1]).strip() + "," + str(x[0]) + "," + str(x[1]) + "," + str(x[2]) + "," + str(x[3])
+            line = str(player_id) + "," + str(user_id_with_name[1]).strip() + "," + str(x[0]) + "," + str(x[1]) + "," + str(x[2]) + "," + str(x[3]) + "," + str(x[4])
             print(line)
             f.write(line + "\n")
 

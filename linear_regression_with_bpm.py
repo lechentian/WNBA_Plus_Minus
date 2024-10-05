@@ -4,11 +4,13 @@ from sklearn.linear_model import LinearRegression
 
 data = pd.read_csv("all_player_bpm_stats.csv")
 
-x = data["AverageSteals"].values.reshape(-1,1)
+x = data[["AveragePoints"]].values
 y = data["AveragePlusMinus"].values
+total_minutes = data["TotalMinutes"].values
+#print(total_minutes)
 
 model = LinearRegression()
-model.fit(x, y)
+model.fit(x, y, sample_weight=total_minutes)
 r2_score = model.score(x, y)
 print(model.coef_)
 print(model.intercept_)
